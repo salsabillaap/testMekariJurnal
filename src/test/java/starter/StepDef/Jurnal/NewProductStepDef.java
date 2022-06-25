@@ -36,14 +36,35 @@ public class NewProductStepDef {
         productMenuStep.fillProductName(name);
     }
 
-    @And("I fill code with {string}")
+    @When("I fill code with {string}")
     public void iFillCodeWith(String code) {
         productMenuStep.fillProductCode(code);
     }
 
-    @And("I fill sell unit price {int}")
-    public void iFillSellUnitPrice(int sellprice) {
-        productMenuStep.fillSellUnitPrice(sellprice);
+    @And("I add category as {string}")
+    public void iAddCategoryAs(String category) {
+        productMenuStep.addedCategory(category);
+    }
+
+    @And("I add unit as {string}")
+    public void iAddUnitAs(String unittype) {
+        productMenuStep.fillUnitType(unittype);
+    }
+
+    @And("I fill descriptions {string}")
+    public void iFillDescriptions(String desc) {
+        productMenuStep.fillDesc(desc);
+    }
+
+    @And("I set default set tax as ppn")
+    public void iSetDefaultSetTaxAsPpn() {
+        productMenuStep.defaultTaxPPN();
+    }
+
+    @And("I fill sale unit price {string}")
+    public void iFillSellUnitPrice(String saleunitPrice) {
+        productMenuStep.clickFieldSaleUnitPrice();
+        productMenuStep.fillSaleUnitPrice(saleunitPrice);
     }
 
     @Then("I select as Create Product")
@@ -52,7 +73,7 @@ public class NewProductStepDef {
     }
 
     @Then("New product is created")
-    public void newProductIsCreated(String namecode) {
-        productMenuStep.verifyProductCreated(namecode);
+    public void newProductIsCreated() {
+        productMenuStep.verifyProductCreated();
     }
 }

@@ -50,8 +50,32 @@ public class ProductMenuStep {
     }
 
     @Step
-    public void fillSellUnitPrice(int sellprice){
-        createNewProductPage.fillSellUnitPrice(sellprice);
+    public void addedCategory(String fruit){
+        createNewProductPage.fillAddCategory(fruit);
+    }
+
+    @Step
+    public void fillUnitType(String unittype){
+        createNewProductPage.fillUnitType(unittype);
+    }
+
+    @Step
+    public void fillDesc(String desc){
+        createNewProductPage.fillDescription(desc);
+    }
+
+    @Step
+    public void clickFieldSaleUnitPrice(){
+        createNewProductPage.clickFieldSaleUnit();
+    }
+    @Step
+    public void fillSaleUnitPrice(String saleUnitPrice){
+        createNewProductPage.fillFieldSaleUnitPrice(saleUnitPrice);
+    }
+
+    @Step
+    public void defaultTaxPPN(){
+        createNewProductPage.setTaxPPN();
     }
 
     @Step
@@ -60,13 +84,25 @@ public class ProductMenuStep {
     }
 
     @Step
-    public void verifyProductCreated(String expected){
+    public void verifyProductCreated(){
         String actualName = productDetailPage.getProductName();
-        assertTrue(expected.contains(actualName));
+        assertTrue("apple".equals(actualName));
 
         String actualCode = productDetailPage.getProcuctCode();
-        assertTrue(expected.contains(actualCode));
+        assertTrue("f322".equals(actualCode));
 
-        productDetailPage.getSellUnitPrice();
+        String actualUnitType = productDetailPage.getUnit();
+        assertTrue("kg".equals(actualUnitType));
+
+        String actualCategory = productDetailPage.getCategory();
+        assertTrue("fruit".equals(actualCategory));
+
+        String actualDesc = productDetailPage.getDesc();
+        assertTrue("An apple is an edible fruit produced by an apple tree (Malus domestica)".equals(actualDesc));
+
+        String actualSalePrice = productDetailPage.getSaleUnitPrice();
+        assertTrue("25000".equals(actualSalePrice));
+
+        assertTrue(productDetailPage.getTaxAsPPN().equals("PPN"));
     }
 }

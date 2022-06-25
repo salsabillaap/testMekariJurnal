@@ -6,10 +6,14 @@ Feature: add new product in my jurnal
     Then Products page is appear
     When I select new product in action dropdown
     Then Create new product page appear
-    And I fill name in info with "namu"
-    And I fill code with "A12"
-    And I fill sell unit price 25000
-    When I select as Create Product
+    When I fill name in info with "apple"
+    And I fill code with "f322"
+    And I add category as "fruit"
+    And I add unit as "kg"
+    And I fill descriptions "An apple is an edible fruit produced by an apple tree (Malus domestica)"
+    And I fill sale unit price "25000"
+    And I set default set tax as ppn
+    And I select as Create Product
     Then New product is created
 
 

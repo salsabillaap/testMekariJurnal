@@ -3,6 +3,7 @@ package starter.Pages.Jurnal;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 @DefaultUrl("https://my.jurnal.id/products/new")
@@ -17,8 +18,29 @@ public class CreateNewProductPage extends PageObject {
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[3]/div[2]/input")
     WebElement fieldCode;
 
-    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div/label[2]")
-    WebElement fieldSellUnitPrice;
+    @FindBy(xpath = "//*[@id=\"react-select-2--value\"]/div[1]")
+    WebElement clickCategory;
+    @FindBy(xpath = "//*[@id=\"react-select-2--value\"]/div[2]/input")
+    WebElement addCategory;
+
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[5]/div[2]/div/div/div/span[2]")
+    WebElement clearValue;
+
+    @FindBy(xpath = "//*[@id=\"react-select-3--value\"]/div[1]")
+    WebElement fieldAddUnit;
+
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[6]/div[2]/textarea")
+    WebElement fieldDescription;
+
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div/label[1]/span")
+    WebElement fieldSaleUnitPrice;
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div")
+    WebElement fillFieldSaleUnitPrice;
+
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[2]/div/div[2]/div/div/div/div/span[2]/span")
+    WebElement dropdownTax;
+    @FindBy(xpath = "\"//*[text()=\\\"PPN\\\"]\"")
+    WebElement selectppn;
 
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[9]/div/button[1]")
     WebElement buttonCreateProduct;
@@ -35,8 +57,33 @@ public class CreateNewProductPage extends PageObject {
         fieldCode.sendKeys(code);
     }
 
-    public void fillSellUnitPrice(int price){
-        fieldSellUnitPrice.sendKeys(String.valueOf(price));
+    public void fillAddCategory(String fruit){
+        clickCategory.click();
+        addCategory.sendKeys(fruit);
+        addCategory.sendKeys(Keys.ENTER);
+    }
+
+    public void fillUnitType(String unitType){
+        clearValue.click();
+        fieldAddUnit.sendKeys(unitType);
+        fieldAddUnit.sendKeys(Keys.ENTER);
+    }
+
+    public void fillDescription(String desc){
+        fieldDescription.sendKeys(desc);
+    }
+
+    public void clickFieldSaleUnit(){
+        fieldSaleUnitPrice.click();
+    }
+
+    public void fillFieldSaleUnitPrice(String saleUnitPrice){
+        fillFieldSaleUnitPrice.sendKeys(saleUnitPrice);
+    }
+
+    public void setTaxPPN(){
+        dropdownTax.click();
+        selectppn.click();
     }
 
     public void clickButtonCreateProduct(){
