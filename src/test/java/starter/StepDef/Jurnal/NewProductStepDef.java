@@ -76,4 +76,14 @@ public class NewProductStepDef {
     public void newProductIsCreated() {
         productMenuStep.verifyProductCreated();
     }
+
+    @And("I select product type as single default")
+    public void iSelectProductTypeAsSingleDefault() {
+
+    }
+
+    @And("I uncheck on checkbox buy item")
+    public void iUncheckOnCheckboxBuyItem() {
+        productMenuStep.uncheckBuyItemCheckbox();
+    }
 }

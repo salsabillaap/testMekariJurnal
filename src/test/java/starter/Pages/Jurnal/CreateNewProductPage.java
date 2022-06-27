@@ -3,6 +3,7 @@ package starter.Pages.Jurnal;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -26,15 +27,19 @@ public class CreateNewProductPage extends PageObject {
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[5]/div[2]/div/div/div/span[2]")
     WebElement clearValue;
 
-    @FindBy(xpath = "//*[@id=\"react-select-3--value\"]/div[1]")
+    //@FindBy(xpath = "//*[@id=\"react-select-3--value\"]/div[1]")
+    @FindBy(xpath = "//*[@id=\"react-select-3--value\"]/div[2]/input")
     WebElement fieldAddUnit;
 
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[6]/div[2]/textarea")
     WebElement fieldDescription;
 
-    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div/label[1]/span")
-    WebElement fieldSaleUnitPrice;
+    @FindBy(id = "buy-panel")
+    WebElement checkboxBuyItem;
+
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div")
+    WebElement fieldSaleUnitPrice;
+    @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[1]/h4/div/label[1]")
     WebElement fillFieldSaleUnitPrice;
 
     @FindBy(xpath = "//*[@id=\"product-new-react\"]/div/div/div/div/div/div[1]/div[8]/div/div/div[1]/div/div[2]/div/div/div[2]/div/div/div[2]/div/div[2]/div/div/div/div/span[2]/span")
@@ -60,17 +65,23 @@ public class CreateNewProductPage extends PageObject {
     public void fillAddCategory(String fruit){
         clickCategory.click();
         addCategory.sendKeys(fruit);
-        addCategory.sendKeys(Keys.ENTER);
+        WebElement inputCategory = getDriver().findElement(By.xpath("//*[text()=\"+ " + fruit + "(new)\"]"));
+        inputCategory.click();
     }
 
     public void fillUnitType(String unitType){
         clearValue.click();
         fieldAddUnit.sendKeys(unitType);
-        fieldAddUnit.sendKeys(Keys.ENTER);
+        WebElement inputUnit = getDriver().findElement(By.xpath("//*[text()=\"+ " + unitType + "(new)\"]"));
+        inputUnit.click();
     }
 
     public void fillDescription(String desc){
         fieldDescription.sendKeys(desc);
+    }
+
+    public void clickBuyItemCheckbox(){
+        checkboxBuyItem.click();
     }
 
     public void clickFieldSaleUnit(){
@@ -78,6 +89,7 @@ public class CreateNewProductPage extends PageObject {
     }
 
     public void fillFieldSaleUnitPrice(String saleUnitPrice){
+        fillFieldSaleUnitPrice.click();
         fillFieldSaleUnitPrice.sendKeys(saleUnitPrice);
     }
 

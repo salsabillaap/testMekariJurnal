@@ -51,17 +51,22 @@ public class ProductMenuStep {
 
     @Step
     public void addedCategory(String fruit){
-        createNewProductPage.fillAddCategory(fruit);
+        createNewProductPage.fillAddCategory(fruit + System.currentTimeMillis());
     }
 
     @Step
     public void fillUnitType(String unittype){
-        createNewProductPage.fillUnitType(unittype);
+        createNewProductPage.fillUnitType(unittype + System.currentTimeMillis());
     }
 
     @Step
     public void fillDesc(String desc){
         createNewProductPage.fillDescription(desc);
+    }
+
+    @Step
+    public void uncheckBuyItemCheckbox(){
+        createNewProductPage.clickBuyItemCheckbox();
     }
 
     @Step
@@ -86,22 +91,22 @@ public class ProductMenuStep {
     @Step
     public void verifyProductCreated(){
         String actualName = productDetailPage.getProductName();
-        assertTrue("apple".equals(actualName));
+        assertTrue("apple".contains(actualName));
 
         String actualCode = productDetailPage.getProcuctCode();
-        assertTrue("f322".equals(actualCode));
+        assertTrue("f322".contains(actualCode));
 
         String actualUnitType = productDetailPage.getUnit();
-        assertTrue("kg".equals(actualUnitType));
+        assertTrue("kg".contains(actualUnitType));
 
         String actualCategory = productDetailPage.getCategory();
-        assertTrue("fruit".equals(actualCategory));
+        assertTrue("fruit".contains(actualCategory));
 
         String actualDesc = productDetailPage.getDesc();
         assertTrue("An apple is an edible fruit produced by an apple tree (Malus domestica)".equals(actualDesc));
 
         String actualSalePrice = productDetailPage.getSaleUnitPrice();
-        assertTrue("25000".equals(actualSalePrice));
+        assertTrue("25000".contains(actualSalePrice));
 
         assertTrue(productDetailPage.getTaxAsPPN().equals("PPN"));
     }
